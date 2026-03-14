@@ -1,0 +1,12 @@
+# ビルド成果物
+go-rest-practice
+
+# 一時ファイル・air のビルド出力
+tmp/
+
+# その他
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
