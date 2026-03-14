@@ -4,6 +4,9 @@ go-rest-practice
 # 一時ファイル・air のビルド出力
 tmp/
 
+# カバレッジ
+coverage.out
+
 # その他
 *.exe
 *.exe~

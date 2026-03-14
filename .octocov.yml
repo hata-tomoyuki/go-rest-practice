@@ -1,0 +1,11 @@
+# octocov 設定（カバレッジ・コード対テスト比の計測）
+coverage:
+  paths:
+    - coverage.out
+
+codeToTestRatio:
+  code:
+    - "**/*.go"
+    - "!**/*_test.go"
+  test:
+    - "**/*_test.go"
