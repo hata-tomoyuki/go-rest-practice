@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"testing"
 
@@ -11,13 +12,18 @@ import (
 )
 
 func TestRun(t *testing.T) {
+	l, err := net.Listen("tcp", "localhost:0")
 	ctx, cancel := context.WithCancel(context.Background())
 	eg, ctx := errgroup.WithContext(ctx)
 	eg.Go(func() error {
-		return run(ctx)
+		return run(ctx, l)
 	})
 	in := "message"
-	rsp, err := http.Get("http://localhost:8080/" + in)
+	url := fmt.Sprintf("http://%s/%s", l.Addr().String(), in)
+
+	t.Logf("Making GET request to http://%s/%s", l.Addr(), in)
+	rsp, err := http.Get(url)
+
 	if err != nil {
 		t.Error("Error making GET request:", err)
 	}
